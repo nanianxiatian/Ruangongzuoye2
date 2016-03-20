@@ -1,0 +1,311 @@
+//四则运算2
+//2016 3 14 Sunzhe
+#include<fstream>
+#include<iostream>
+using namespace std;
+
+
+void chengchufa(int m,int s)
+{
+	int v;
+	int  j[100],k[100],l[100];//用于检查重复的数组
+	cout<<"请输入选择：1.有余数 2.无余数："<<endl;
+	cin>>v;
+	for(int i=0;i<m;i++)
+	{
+		int n=rand()%4; //产生随机数，运算符
+		int a=rand()%s;//产生1~s随机数
+		int b=rand()%s;//产生1~s随机数
+		j[i]=n;
+		k[i]=a;
+		l[i]=b;
+		for(int r=i-1;r>=0;r--)//向前检查重复，如果重复则重新生成
+		{
+			if(j[r]==j[i]&&k[r]==k[i]&&l[r]==l[i])
+			{
+				int n=rand()%4; //产生随机数，运算符
+				int a=rand()%s;//产生1~s随机数
+				int b=rand()%s;//产生1~s随机数
+			}
+		}
+
+
+			if(n==0){
+						cout<<a<<"+"<<b<<"="<<endl;
+			}
+			else if(n==1){
+						cout<<a<<"-"<<b<<"="<<endl;
+			}
+			else if(n==2){
+						cout<<a<<"*"<<b<<"="<<endl;
+			}
+			else{
+					if(a<b)//实现被除数比除数大
+					{
+						int w;
+						w=a;
+						a=b;
+						b=w;
+					}
+					if(b==0)
+					{
+						b++;
+					}
+					if(v==1)//有余数
+					{
+						cout<<a<<"/"<<b<<"="<<endl;
+					}
+					if(v==2)
+					{
+						a=a-a%b;
+						cout<<a<<"/"<<b<<"="<<endl;
+					}
+			}
+	}
+}
+
+void jiajianfa(int m,int s){
+	
+		int u;
+		int  j[100],k[100],l[100];//用于检查重复的数组
+		cout<<"请输入选择：1有负数 2无负数"<<endl;
+		cin>>u;
+		for(int i=0;i<m;i++)
+		{
+			int n=rand() %2;//产生随机数,运算符的
+
+			int a=rand()%s;//产生1~s随机数
+			int b=rand()%s;//产生1~s随机数
+			j[i]=n;
+			k[i]=a;
+			l[i]=b;
+			for(int r=i-1;r>=0;r--)
+			{
+				if(j[r]==j[i]&&k[r]==k[i]&&l[r]==l[i])
+				{
+					int n=rand()%4; //产生随机数，运算符
+					int a=rand()%s;//产生1~s随机数
+					int b=rand()%s;//产生1~s随机数
+				}
+			}
+					
+			if(u==1) //有负数
+			{
+				if(n==0)
+				{
+					cout<<"(-"<<a<<")+"<<b<<"="<<endl;
+				}
+				else 
+				{
+					cout<<a<<"-"<<b<<"="<<endl;
+				}
+			}
+			if(u==2)//无负数
+			{
+				if(a<b)//实现减法无负数
+				{
+					int w;
+					w=a;
+					a=b;
+					b=w;
+				}
+				if(n==0)
+				{
+					cout<<a<<"+"<<b<<"="<<endl;
+				}
+				else 
+				{
+					cout<<a<<"-"<<b<<"="<<endl;
+				}
+			}
+	    }
+	
+}
+void dayinfangshi(int m,int s){
+	int t;
+	cout<<"请输入选择1.在屏幕输出2.在文件输出"<<endl;
+	cin>>t;
+	if(t==1)
+	{
+		for(int i=0;i<m;i++)
+	{
+		int n=rand()%4; //产生随机数，运算符
+		int a=rand()%s;//产生1~s随机数
+		int b=rand()%s;//产生1~s随机数
+		
+		if(n==0){
+			cout<<a<<"+"<<b<<"="<<endl;
+		}
+		else if(n==1){
+			cout<<a<<"-"<<b<<"="<<endl;
+		}
+		else if(n==2){
+			cout<<a<<"*"<<b<<"="<<endl;
+		}
+		else{
+			if(a<b)//实现被除数比除数大
+			{
+				int w;
+				w=a;
+				a=b;
+				b=w;
+			}
+			if(b==0)
+			{
+				b++;
+			}
+			cout<<a<<"/"<<b<<"="<<endl;
+		}
+	}
+	}
+	if(t==2)
+	{
+		ofstream outfile("f1.dat",ios::out);//定义文件流对象，打开磁盘文件f1.dat
+		if(! outfile)  //如果打开失败返回0值
+		{
+			cerr<<"open error!"<<endl;
+			exit(1);
+		}
+	for(int i=0;i<m;i++)
+	{
+		int n=rand()%4; //产生随机数，运算符
+		int a=rand()%s;//产生1~s随机数
+		int b=rand()%s;//产生1~s随机数
+		
+		if(n==0){
+			outfile<<a<<"+"<<b<<"="<<endl;
+		}
+		else if(n==1){
+			outfile<<a<<"-"<<b<<"="<<endl;
+		}
+		else if(n==2){
+			outfile<<a<<"*"<<b<<"="<<endl;
+		}
+		else{
+			if(a<b)//实现被除数比除数大
+			{
+				int w;
+				w=a;
+				a=b;
+				b=w;
+			}
+			if(b==0)
+			{
+				b++;
+			}
+			outfile<<a<<"/"<<b<<"="<<endl;
+		}
+	}
+	outfile.close();
+	}
+}
+
+void main()
+{
+	int x;//进行选择的数
+	q:cout<<"请选择要进行的运算：1.整数运算 2.真分数运算 3.退出程序"<<endl;
+	cin>>x;
+	switch(x)
+	{
+	case 1://进行整数的运算
+		{
+			int m;//题目的数量
+			cout<<"请输入想打印的数量："<<endl;
+			cin>>m;
+			
+			
+			int s;//数值范围
+			cout<<"请输入想要计算的数值范围(1~ 你输入的数)："<<endl;
+			cin>>s;
+			int t;
+			cout<<"请输入选择："<<endl;
+			cout<<"1.有乘除法"<<endl;
+			cout<<"2.无乘除法"<<endl;
+			cout<<"3.打印方式"<<endl;
+			cin>>t;
+			if(t==1){//有乘除法
+				chengchufa(m,s);
+				
+			}	
+			if(t==2)//无乘除法
+			{
+				jiajianfa(m,s);
+			}
+			if(t==3)
+			{
+				dayinfangshi(m,s);
+			}
+			goto q;
+		}
+	case 2:
+		{
+			for(int i=0;i<30;i++)
+			{
+				int c=rand()%100;//产生1~100随机数
+				int d=rand()%100;//产生1~100随机数
+				int e=rand()%100;//产生1~100随机数
+				int f=rand()%100;//产生1~100随机数
+
+				
+				//保证为真分数
+				if(c>d)
+				{
+					int t;
+					t=d;
+					d=c;
+					c=t;
+				}
+				if(e>f)
+				{
+					int s;
+					s=f;
+					f=e;
+					e=s;
+				}
+				if(d==0){d++;}  //分母不为零
+				if(f==0){f++;}  //分母不为零
+				//约分化为最简
+				for(int a=c;a>0;a-- )
+				{
+					if(c%a==0&&d%a==0)
+					{
+						c=c/a;
+						d=d/a;
+						break;
+				    }
+				}
+				for(int b=e;b>0;b-- )
+				{
+					if(e%b==0&&f%b==0)
+					{
+						e=e/b;
+						f=f/b;
+						break;
+				    }
+				}
+
+				int n=rand() %4;   //产生运算符的随机数
+				
+				if(n==0){
+					cout<<c<<"/"<<d<<"+"<<e<<"/"<<f<<"="<<endl;
+				}
+				else if(n==1){
+					cout<<c<<"/"<<d<<"-"<<e<<"/"<<f<<"="<<endl;
+				}
+				else if(n==2){
+					cout<<c<<"/"<<d<<"*("<<e<<"/"<<f<<")="<<endl;
+				}
+				else
+				{
+					cout<<c<<"/"<<d<<"/("<<e<<"/"<<f<<")="<<endl;
+				}
+			}
+			goto q;
+		}
+	case 3:
+		{
+			exit(0);
+		}
+
+	}
+}
